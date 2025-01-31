@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class {{seederName}} extends Seeder
+{
+    public function run()
+    {
+        helper('seed');
+
+        $jsonData = <<<'EOD'
+[{{jsonSeeds}}]
+EOD;
+        $seedData = json_decode($jsonData, true);
+
+{{foreignKeyTransforms}}
+        $model = model('{{className}}Model');
+        insertSeedBatch($model, $seedData);
+    }
+}

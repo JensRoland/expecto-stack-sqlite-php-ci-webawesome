@@ -7,3 +7,18 @@ post-install:
 .PHONY: serve
 serve:
 	( cd spcw && php spark serve )
+
+#* Run database migrations
+.PHONY: migrate
+migrate:
+	( cd spcw && php spark migrate )
+
+#* Bootstrap demo application
+.PHONY: bootstrap-demo-app
+bootstrap-demo-app:
+	( cd spcw && php spark make:crud ../demo-app-spec.json --migration --seeder --entity --dates --force )
+
+#* Run demo database seeder
+.PHONY: seed-demo-database
+seed-demo-database:
+	( cd spcw && php spark db:seed BlogPostSeeder )

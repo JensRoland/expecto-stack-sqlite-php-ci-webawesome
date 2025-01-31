@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Cells;
+
+use CodeIgniter\View\Cells\Cell;
+
+class NavigationCell extends Cell
+{
+    public bool $isLoggedIn = false;
+    public array $menuGroups = [];
+
+    public function mount(): void
+    {
+        $this->isLoggedIn = auth()->loggedIn();
+        $this->menuGroups = [
+            [
+                'title' => 'Entities',
+                'items' => [
+{{menuEntities}}
+                ],
+            ]
+        ];
+    }
+}

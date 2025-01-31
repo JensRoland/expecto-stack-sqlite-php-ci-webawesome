@@ -1,0 +1,69 @@
+<?= $this->extend('Layouts/default') ?>
+
+<?= $this->section('pageTitle') ?>
+{{className}} Index | SPCW App
+<?= $this->endSection() ?>
+
+<?= $this->section('header') ?>
+    <hgroup>
+        <h1>{{className}} Index</h1>
+    </hgroup>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+<div class="table-actions wa-split">
+    <div class="table-actions-left">
+        <!-- TODO: add search and filtering -->
+    </div>
+    <div class="table-actions-right">
+        <wa-button href="<?= site_url('{{baseRoute}}/new') ?>" pill>
+            <wa-icon slot="prefix" name="plus"></wa-icon>
+            Create New
+        </wa-button>
+    </div>
+</div>
+
+<form method="post">
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: right;">ID</th>
+            {{tableHeaders}}
+            <th style="text-align: center; width: 100px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if (! empty($items)): ?> 
+        <?php foreach ($items as $item): ?> 
+        <tr>
+            <td style="text-align: right;"><?= esc($item->id) ?></td>
+            {{tableRowCells}}
+            <td style="text-align: center;">
+                <wa-icon-button href="<?= site_url('{{baseRoute}}/edit/' . $item->id) ?>" name="pen-to-square" variant="regular" label="Edit"></wa-icon-button>
+                <wa-icon-button name="trash-can" variant="regular" label="Delete" data-formaction="<?= site_url('{{baseRoute}}/delete/' . $item->id) ?>" data-confirm="Are you sure you want to delete this?"></wa-icon-button>
+            </td>
+        </tr>
+        <?php endforeach; ?> 
+    <?php else: ?> 
+        <tr>
+            <td colspan="99" style="text-align: center;">No {{className}} found.</td>
+        </tr>
+    <?php endif; ?> 
+    </tbody>
+</table>
+</form>
+
+<dialog id="dialog-confirm">
+	<header>
+		<h2>Confirm action</h2>
+		<button data-dialog="close" class="wa-plain">✖️</button>
+	</header>
+    <p class="dialog-message"></p>
+    <footer>
+        <button class="wa-outlined" data-dialog="close">Cancel</button>
+        <button class="wa-danger wa-filled" data-dialog="confirm">Confirm</button>
+    </footer>
+</dialog>
+
+<?= $this->endSection() ?>
