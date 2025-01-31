@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+use App\Controllers\traits\ModelSpecific;
+use App\Models\{{className}}Model;
+use CodeIgniter\Exceptions\PageNotFoundException;
+
+class {{controllerName}} extends BaseController
+{
+    use ModelSpecific;
+
+    protected string $modelName = 'App\Models\{{className}}Model';
+
+    /**
+     * Index page: List all items.
+     */
+    public function getIndex()
+    {
+        $data['items'] = $this->getModel()->findAll();
+
+        return view('{{className}}/index', $data);
+    }
+
+    /**
+     * Show a single item by ID.
+     */
+    public function getShow($id = null)
+    {
+        $data['item'] = $this->getModel()->find($id){{withEagerFetchOnShow}};
+
+        if (! $data['item']) {
+            throw PageNotFoundException::forPageNotFound("{{humanEntityName}} with ID $id not found.");
+        }
+
+        return view('{{className}}/show', $data);
+    }
+
+    /**
+     * Display form for creating a new item.
+     */
+    public function getNew()
+    {
+        $data = [];
+        {{fetchRelatedOptions}}
+        return view('{{className}}/new', $data);
+    }
+
+    /**
+     * Handle form submission for creating a new item.
+     */
+    public function postCreate()
+    {
+        $model = $this->getModel();
+        $input = $this->request->getPost(); 
+
+        $id = $model->insert($input, true);
+        if (! $id) {
+            // Redirect back with errors
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('errors', $model->errors());
+        }
+
+        // Redirect to show page, with a success message
+        return redirect()
+            ->to('{{baseRoute}}/show/' . $id)
+            ->with('message', '{{humanEntityName}} created successfully.');
+    }
+
+    /**
+     * Display form to edit an existing item.
+     */
+    public function getEdit($id = null)
+    {
+        $data['item'] = $this->getModel()->find($id);
+        {{fetchRelatedOptions}}
+
+        if (! $data['item']) {
+            throw PageNotFoundException::forPageNotFound("{{humanEntityName}} with ID $id not found.");
+        }
+
+        return view('{{className}}/edit', $data);
+    }
+
+    /**
+     * Handle form submission for updating an existing item.
+     */
+    public function postUpdate($id = null)
+    {
+        $model = $this->getModel();
+        $input = $this->request->getPost();
+
+        if (! $model->update($id, $input)) {
+            // Redirect back with errors
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('errors', $model->errors());
+        }
+
+        return redirect()
+            ->to('{{baseRoute}}/show/' . $id)
+            ->with('message', '{{humanEntityName}} updated successfully.');
+    }
+
+    /**
+     * Handle deletion of an existing item.
+     */
+    public function postDelete($id = null)
+    {
+        $model = $this->getModel();
+        $item = $model->find($id);
+
+        if (! $item) {
+            throw PageNotFoundException::forPageNotFound("{{humanEntityName}} with ID $id not found.");
+        }
+
+        $model->delete($id);
+
+        return redirect()
+            ->to('{{baseRoute}}/')
+            ->with('message', '{{humanEntityName}} deleted successfully.');
+    }
+}

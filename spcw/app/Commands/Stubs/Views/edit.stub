@@ -1,0 +1,33 @@
+<?= $this->extend('Layouts/default') ?>
+
+<?= $this->section('pageTitle') ?>
+Edit {{humanEntityName}} (<?= esc($item->primaryKey()) ?>) | SPCW App
+<?= $this->endSection() ?>
+
+<?= $this->section('header') ?>
+    <hgroup>
+        <h1>Edit {{humanEntityName}} (<?= esc($item->primaryKey()) ?>)</h1>
+    </hgroup>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+<?php
+helper('form');
+?>
+
+<?php if (isset($item)): ?>
+<?= form_open('{{baseRoute}}/update/' . rawurlencode($item->primaryKey())) ?>
+
+{{formFields}}
+
+    <p>
+        <button type="submit">Update</button>
+    </p>
+
+<?= form_close() ?>
+<?php else: ?>
+    <p>No records found.</p>
+<?php endif; ?>
+
+<?= $this->endSection() ?>

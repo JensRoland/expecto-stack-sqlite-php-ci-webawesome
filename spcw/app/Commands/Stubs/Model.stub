@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+{{dependencies}}
+
+class {{className}}Model extends Model
+{
+    {{traits}}
+
+    protected $table              = '{{tablePlural}}';
+    protected $primaryKey         = '{{primaryKeyField}}';
+    protected $primaryDisplayName = {{primaryDisplayName}};
+    protected $useAutoIncrement   = {{useAutoIncrement}};
+    protected $returnType         = {{modelReturnType}};
+    protected $useSoftDeletes     = {{useSoftDeletes}};
+
+    protected $protectFields      = true;
+    protected $allowedFields      = [
+        {{allowedFields}}
+    ];
+    protected $omittableFields = [
+        {{omittableFields}}
+    ];
+
+    // Timestamps
+    protected $useTimestamps = {{useTimestamps}};
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = '{{createdField}}';
+    protected $updatedField  = '{{updatedField}}';
+    protected $deletedField  = '{{deletedField}}';
+
+    // Validation
+    protected $validationRules    = [
+        {{validationRules}}
+    ];
+    protected $validationMessages = [];
+    protected $skipValidation     = false;
+
+    protected $allowCallbacks = true;
+    {{callbacks}}
+
+    {{callbackExtras}}
+}

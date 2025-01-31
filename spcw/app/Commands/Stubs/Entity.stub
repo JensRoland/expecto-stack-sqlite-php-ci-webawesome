@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Entities;
+
+use CodeIgniter\Entity\Entity;
+use App\Entities\traits\PrimaryKeyAccess;
+use App\Entities\traits\DisplayNameAccess;
+use App\Entities\traits\FetchRelationsOnAccess;
+
+class {{entityName}} extends Entity
+{
+    use PrimaryKeyAccess, DisplayNameAccess, FetchRelationsOnAccess;
+
+    // The $dates property automatically converts date/datetime fields
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    // Casting for properties
+    protected $casts = [
+        {{casts}}
+    ];
+    protected $primaryKeyField = '{{primaryKeyField}}';
+    protected $displayNameField = '{{displayNameField}}';
+    {{secretPropertyGetters}}
+    {{foreignRelationGetters}}
+
+
+    // Define any custom entity logic or accessors/mutators here
+
+}

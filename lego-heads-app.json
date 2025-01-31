@@ -1,0 +1,194 @@
+{
+  "appName": "Lego SPCW App",
+  "description": "Lego SPCW app description.",
+  "stack": "sqlite-php-ci-webawesome",
+  "stackVersion": "latest",
+  "parameters": {
+  },
+  "modules": [
+  ],
+  "dataEntities": [
+    {
+      "type": "Entity",
+      "name": "LegoSet",
+      "fields": {
+        "itemNo": {
+          "type": "string",
+          "primaryKey": true
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "primaryDisplayName": true
+        },
+        "series": {
+          "type": "LegoSeries",
+          "required": false
+        },
+        "releaseYear": {
+          "type": "int",
+          "required": false
+        },
+        "description": {
+          "type": "text",
+          "maxLength": 512
+        },
+        "productImage": {
+          "type": "string",
+          "format": "url"
+        }
+      },
+      "compact": [
+        "name",
+        "releaseYear"
+      ],
+      "searchBy": [
+        "itemNo",
+        "name",
+        "description"
+      ],
+      "filterBy": [
+        "releaseYear",
+        "series.name",
+        "series.theme"
+      ],
+      "sortBy": [
+        "itemNo",
+        "name",
+        "releaseYear",
+        "series.name",
+        "series.theme"
+      ],
+      "seeds": [
+        {
+          "itemNo": "6546-1",
+          "name": "Slick Racer",
+          "series": "Racing",
+          "releaseYear": 1996,
+          "description": "Slick Racer is a LEGO set released in 1996. It contains a black and yellow car with a driver. The car has a pull-back motor.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6546-1.png"
+        },
+        {
+          "itemNo": "6548-1",
+          "name": "Octan Gas Station",
+          "series": "City",
+          "releaseYear": 1997,
+          "description": "Octan Gas Station is a LEGO set released in 1997. It contains a gas station with a car wash, a shop, and a small car.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6548-1.png"
+        },
+        {
+          "itemNo": "1497-1",
+          "name": "Pitstop and Crew",
+          "series": "Racing",
+          "releaseYear": 1876,
+          "description": "Pitstop and Crew is a LEGO set released in 1876. It contains a pitstop with a crew and a car.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/1497-1.png"
+        },
+        {
+          "itemNo": "6433-1",
+          "name": "Coast Watch",
+          "series": "City",
+          "releaseYear": 1999,
+          "description": "Coast Watch is a LEGO set released in 1999. It contains a coast guard station with a boat and a helicopter.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6433-1.png"
+        },
+        {
+          "itemNo": "6278-1",
+          "name": "Enchanted Island",
+          "series": "Pirates",
+          "releaseYear": 1994,
+          "description": "Enchanted Island is a LEGO set released in 1994. It contains an island with a pirate ship, a cave, and a treasure chest.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6278-1.png"
+        },
+        {
+          "itemNo": "6276-1",
+          "name": "Eldorado Fortress",
+          "series": "Pirates",
+          "releaseYear": 1989,
+          "description": "Eldorado Fortress is a LEGO set released in 1989. It contains a fortress with a prison, a cannon, and a pirate ship.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6276-1.png"
+        },
+        {
+          "itemNo": "1971-1",
+          "name": "Black Knight's Battering Ram",
+          "series": "Black Knights",
+          "releaseYear": 1993,
+          "description": "Black Knight's Battering Ram is a LEGO set released in 1993. It contains a battering ram with a knight.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/1971-1.png"
+        },
+        {
+          "itemNo": "6086-1",
+          "name": "Black Knight's Castle",
+          "series": "Black Knights",
+          "releaseYear": 1992,
+          "description": "Black Knight's Castle is a LEGO set released in 1992. It contains a castle with a drawbridge, a tower, and a prison.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6086-1.png"
+        },
+        {
+          "itemNo": "6057-1",
+          "name": "Sea Serpent",
+          "series": "Black Knights",
+          "releaseYear": 1992,
+          "description": "Sea Serpent is a LEGO set released in 1992. It contains a small boat with a dragon.",
+          "productImage": "https://img.bricklink.com/ItemImage/SN/0/6057-1.png"
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "LegoSeries",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "primaryDisplayName": true
+        },
+        "theme": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "text",
+          "maxLength": 512
+        }
+      },
+      "compact": [
+        "name",
+        "theme"
+      ],
+      "searchBy": [
+        "name",
+        "description"
+      ],
+      "filterBy": [
+        "theme"
+      ],
+      "sortBy": [
+        "name",
+        "theme"
+      ],
+      "seeds": [
+        {
+          "name": "Racing",
+          "theme": "Town",
+          "description": "Racing was introduced in 1975. It includes various sets that depict racing cars."
+        },
+        {
+          "name": "City",
+          "theme": "Town",
+          "description": "City was introduced in 2005. It includes various sets that depict city life."
+        },
+        {
+          "name": "Black Knights",
+          "theme": "Castle",
+          "description": "Black Knights was introduced in 1992. It includes various sets that depict a group of knights."
+        },
+        {
+          "name": "Pirates",
+          "theme": "Pirates",
+          "description": "Pirates was introduced in 1989. It includes various sets that depict pirates and their adventures."
+        }
+      ]
+    }
+  ]
+}

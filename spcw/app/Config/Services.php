@@ -19,14 +19,22 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
+    /**
+     * Returns the View instance.
      *
-     *     return new \CodeIgniter\Example();
-     * }
+     * @param bool $getShared Whether to return the shared instance.
+     * @return \App\Libraries\View
      */
+    public static function renderer($viewPath=null, $config=null, bool $getShared=true)
+    {
+        $viewPath = $viewPath ?? (new Paths())->viewDirectory;
+        $config = $config ?? config('View');
+
+        if ($getShared)
+        {
+            return static::getSharedInstance('renderer', $viewPath, $config);
+        }
+
+        return new \App\Libraries\View($config, $viewPath);
+    }
 }

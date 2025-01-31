@@ -1,0 +1,137 @@
+{
+  "appName": "SPCW App",
+  "description": "SPCW app description.",
+  "stack": "sqlite-php-ci-webawesome",
+  "stackVersion": "latest",
+  "parameters": {
+  },
+  "modules": [
+  ],
+  "dataEntities": [
+    {
+      "type": "Entity",
+      "name": "BlogPost",
+      "fields": {
+        "title": {
+          "type": "string",
+          "minLength": 12,
+          "required": true,
+          "primaryDisplayName": true
+        },
+        "content": {
+          "type": "text",
+          "required": false
+        },
+        "author": {
+          "type": "string",
+          "maxLength": 65,
+          "required": true
+        },
+        "controversialOpinion": {
+          "type": "string",
+          "secret": true
+        },
+        "priority": {
+          "type": "int",
+          "required": true,
+          "default": 0
+        },
+        "testUuid": {
+          "type": "string",
+          "format": "uuid",
+          "required": false
+        },
+        "temperature": {
+          "type": "float",
+          "required": false,
+          "default": 42.5
+        },
+        "isFeatured": {
+          "type": "boolean",
+          "default": false
+        },
+        "publishAt": {
+          "type": "datetime",
+          "required": false
+        },
+        "promoteDate": {
+          "type": "date",
+          "required": false
+        },
+        "expireAtTime": {
+          "type": "timestamp",
+          "required": false
+        }
+      },
+      "compact": [
+        "title",
+        "priority",
+        "isFeatured",
+        "controversialOpinion"
+      ],
+      "searchBy": [
+        "title",
+        "author",
+        "content"
+      ],
+      "filterBy": [
+        "author",
+        "isFeatured"
+      ],
+      "sortBy": [
+        "title",
+        "author",
+        "priority",
+        "temperature",
+        "isFeatured",
+        "publishAt",
+        "promoteDate",
+        "expireAtTime",
+        "createdAt",
+        "updatedAt"
+      ],
+      "seeds": [
+        {
+          "title": "Rasmus Lerdorf: The Danish Pioneer Who Revolutionized Web Development",
+          "content": "Rasmus Lerdorf is a name synonymous with innovation in the world of web development. Best known as the creator of PHP, Lerdorf's work has left an indelible mark on the computing landscape, transforming how websites and applications are built and maintained.\n\n## The Birth of PHP\n\nIn the mid-1990s, as the World Wide Web was beginning to take shape, Rasmus Lerdorf developed a set of Common Gateway Interface (CGI) scripts to manage his personal homepage. These scripts evolved into what we now know as PHP (Hypertext Preprocessor). PHP quickly became the backbone of dynamic web content, thanks to its simplicity, flexibility, and open-source nature.\n\n## Top Contributions to Computing\n\nLerdorf's work has had far-reaching implications for both developers and the broader tech community:\n\n- **Creation of PHP**:  \n  PHP emerged as one of the most popular server-side scripting languages, powering millions of websites and applications around the globe. Its user-friendly syntax and robust functionality have made it a favorite among web developers.\n\n- **Empowering Open-Source Development**:  \n  By releasing PHP as an open-source project, Lerdorf fostered a collaborative environment where developers could contribute, innovate, and build upon his work. This spirit of community-driven development has been a key factor in PHP's evolution and enduring relevance.\n\n- **Shaping the Modern Web**:  \n  PHP played a crucial role in the rise of the LAMP stack (Linux, Apache, MySQL, PHP), which became a standard for web development. This stack has underpinned countless projects, from small personal blogs to large-scale enterprise applications.\n\n## A Lasting Legacy\n\nRasmus Lerdorf's contributions extend beyond the creation of a programming language. His approach to software development\u2014characterized by pragmatism, simplicity, and a commitment to the open-source ethos\u2014continues to influence modern programming practices. Today, PHP remains a cornerstone of web development, and Lerdorf's pioneering spirit is celebrated by developers around the world.\n\n## Conclusion\n\nRasmus Lerdorf's work is a testament to how innovative thinking can transform the tech industry. From humble beginnings in crafting personal web tools to establishing a programming language that powers the internet, his legacy is one of creativity, collaboration, and lasting impact. As we continue to build the future of web technology, the contributions of pioneers like Lerdorf remind us of the power of open innovation and the enduring value of simplicity in design.",
+          "author": "o3-mini",
+          "priority": 1,
+          "publishAt": "2028-12-24 10:20:30",
+          "expireAtTime": 1672531230
+        },
+        {
+          "title": "Anders Hejlsberg: The Danish Pioneer Who Shaped Modern Software Development",
+          "content": "Anders Hejlsberg, a Danish software engineer, is one of the most influential figures in the history of programming languages and development tools. From Turbo Pascal to TypeScript, his contributions have left an indelible mark on how developers build software today. Let\u2019s explore his top achievements:\n\n## 1. **Turbo Pascal (1983)**  \nHejlsberg\u2019s career skyrocketed with the creation of **Turbo Pascal**, a compiler and IDE that revolutionized PC programming. It was fast, affordable, and user-friendly, making Pascal accessible to hobbyists and professionals alike. Turbo Pascal set the standard for integrated development environments (IDEs) and laid the groundwork for modern coding tools.\n\n## 2. **Delphi (1995)**  \nAt Borland, Hejlsberg led the development of **Delphi**, a groundbreaking RAD (Rapid Application Development) tool. Delphi combined object-oriented Pascal with a visual design environment, enabling developers to build Windows applications faster than ever. Its influence persists in today\u2019s low-code platforms.\n\n## 3. **C# (2000)**  \nAs a Microsoft Distinguished Engineer, Hejlsberg became the chief architect of **C#**, a language designed for the .NET framework. C# blended the power of C++ with the simplicity of Java, becoming a cornerstone for enterprise software, web services, and even game development (thanks to Unity). Its ongoing evolution keeps it at the forefront of modern programming.\n\n## 4. **TypeScript (2012)**  \nRecognizing the need for scalability in JavaScript, Hejlsberg created **TypeScript**, a statically typed superset of JavaScript. TypeScript\u2019s type safety and tooling support transformed large-scale web development, earning adoption by giants like Google, Airbnb, and Microsoft itself. It remains one of the fastest-growing languages today.\n\n## Legacy and Impact  \nHejlsberg\u2019s work emphasizes practicality, performance, and developer productivity. A recipient of numerous awards (including the Dr. Dobb\u2019s Excellence in Programming Award), he continues to innovate as a Technical Fellow at Microsoft. His philosophy\u2014*\u201cSimplicity is complicated, but worth fighting for\u201d*\u2014resonates in every tool he builds.\n\nWhether you\u2019re writing C# backend code or debugging TypeScript, you\u2019re standing on the shoulders of a Danish giant.",
+          "author": "DeepSeek R1",
+          "priority": 2,
+          "isFeatured": 1
+        },
+        {
+          "title": "Bjarne Stroustrup: The Mind Behind C++",
+          "content": "Bjarne Stroustrup, born in 1950 in Aarhus, Denmark, revolutionized the world of programming through his creation of the C++ programming language. His work has profoundly influenced modern software development, powering everything from operating systems to video games.\n\n## The Birth of C++\n\nIn 1979, while working at Bell Labs, Stroustrup began developing what would become C++. He envisioned a language that combined the efficiency of C with the power of object-oriented programming. Originally called \"C with Classes,\" the language was renamed C++ in 1983, with the \"++\" representing the increment operator in C.\n\n## Key Contributions\n\nStroustrup's most significant contribution is his design philosophy for C++, which emphasizes:\n\nPerformance and efficiency, allowing programmers to write high-performance code without sacrificing abstraction capabilities. The language's \"zero-overhead principle\" ensures that you don't pay for features you don't use.\n\nGeneric programming through templates, which revolutionized how developers write reusable code. The Standard Template Library (STL), which he helped develop, provides a collection of powerful, generic containers and algorithms.\n\nMultiple inheritance and strong type checking, which enable complex software architectures while maintaining type safety. These features have influenced many modern programming languages.\n\n## Legacy and Impact\n\nToday, C++ remains one of the most widely used programming languages in the world. It powers major tech companies' codebases, gaming engines, financial systems, and embedded devices. Stroustrup's creation has stood the test of time, evolving through multiple standards while maintaining its core principles of efficiency and flexibility.\n\nStroustrup continues to contribute to computer science as a professor at Columbia University and through his involvement in the C++ standards committee. His work has earned him numerous accolades, including the Computer History Museum Fellow Award and the IEEE John von Neumann Medal.\n\nHis famous quote encapsulates his practical approach to programming: \"I have always wished for my computer to be as easy to use as my telephone; my wish has come true because I can no longer figure out how to use my telephone.\"",
+          "author": "Claude 3.5 Sonnet",
+          "controversialOpinion": "C++ is the only good programming language",
+          "priority": 3
+        },
+        {
+          "title": "David Heinemeier Hansson: A Pioneer in Software Development",
+          "content": "David Heinemeier Hansson, a Danish software pioneer, has made significant contributions to the world of computing. Born in 1979 in Copenhagen, Denmark, Hansson is best known for creating the Ruby on Rails framework, which has revolutionized the way developers build web applications.\n\n#### Top Contributions to Computing\nSome of Hansson's top contributions to computing include:\n* **Ruby on Rails**: As mentioned earlier, Hansson created the Ruby on Rails framework, which provides a structured approach to building web applications. Rails has become a popular choice among developers due to its simplicity, flexibility, and ease of use.\n* **Basecamp**: Hansson co-founded Basecamp, a project management tool that helps teams collaborate and stay organized. Basecamp has become a leading platform for remote work and team collaboration.\n* **Hotwired**: Hansson also co-founded Hotwired, a web development firm that specializes in building custom web applications using Ruby on Rails.\n* **Author and Speaker**: Hansson is a prolific author and speaker, having written several books on software development, including \"Getting Real\" and \"Rework\". He is also a popular speaker at conferences and events, where he shares his insights on software development, entrepreneurship, and productivity.\n\n#### Legacy and Impact\nHansson's contributions to computing have had a significant impact on the software development industry. His work on Ruby on Rails has inspired a new generation of developers to build web applications using the framework. His approach to software development, which emphasizes simplicity, collaboration, and productivity, has also influenced the way developers work and build software. Overall, David Heinemeier Hansson is a true pioneer in the world of software development, and his contributions continue to shape the industry today.",
+          "author": "Llama-3.3-70B-Instruct-Turbo",
+          "priority": 4
+        },
+        {
+          "title": "Lars Bak: A Danish Software Pioneer and His Top Contributions to Computing",
+          "content": "Lars Bak is a renowned Danish computer scientist and software engineer who has made significant contributions to the field of computing. His work has influenced various aspects of software development, particularly in the areas of virtual machines, programming languages, and web technologies. Here are some of his top contributions:\n\n## 1. **Java Virtual Machine (JVM)**\n\nLars Bak is widely known for his work on the Java Virtual Machine (JVM). He was a key member of the team that developed the HotSpot JVM at Sun Microsystems. HotSpot is renowned for its high performance and efficiency, making Java a viable option for enterprise-level applications. Bak's contributions to the JVM have had a lasting impact on the Java ecosystem.\n\n## 2. **V8 JavaScript Engine**\n\nOne of Bak's most notable achievements is his work on the V8 JavaScript engine. Developed by Google, V8 is the engine that powers Google Chrome and Node.js. Bak led the development of V8, which significantly improved the performance of JavaScript execution. This innovation has been crucial in making JavaScript a powerful and efficient language for both client-side and server-side development.\n\n## 3. **Dart Programming Language**\n\nLars Bak also played a pivotal role in the creation of the Dart programming language. Dart is designed to be a structured yet flexible language for web development. It aims to address some of the shortcomings of JavaScript while providing a robust framework for building complex web applications. Bak's involvement in Dart has helped shape the future of web development.\n\n## 4. **Strongtalk and Self**\n\nBefore his work on the JVM and V8, Lars Bak contributed to the development of the Strongtalk and Self programming languages. Strongtalk is an implementation of Smalltalk that focuses on performance and efficiency. Self, on the other hand, is a prototype-based programming language that influenced the design of JavaScript. Bak's work on these languages laid the foundation for his later contributions to virtual machines and web technologies.\n\n## 5. **OVM (OoVM)**\n\nLars Bak's work on the OVM (Object-oriented Virtual Machine) is another notable contribution. OVM was designed to be a high-performance virtual machine for object-oriented languages. Although it did not gain widespread adoption, the concepts and techniques developed for OVM have influenced the design of other virtual machines, including the JVM and V8.\n\n## Conclusion\n\nLars Bak's contributions to computing are vast and impactful. From his work on the Java Virtual Machine to his leadership in developing the V8 JavaScript engine and the Dart programming language, Bak has played a crucial role in shaping the modern software landscape. His innovations continue to influence the way we develop and deploy software today.\n\n---\n\nLars Bak's legacy in the field of computing is a testament to his vision and dedication. His work has not only advanced the state of the art in software development but has also inspired a new generation of engineers and researchers.",
+          "author": "Mistral Large",
+          "priority": 5
+        },
+        {
+          "title": "Peter Naur: The Danish Software Pioneer and His Top Contributions to Computing",
+          "content": "When we think about the pioneers of computing, names like Alan Turing, Grace Hopper, and John von Neumann often come to mind. However, one name that doesn't get as much attention but is equally deserving of recognition is Peter Naur, a Danish computer scientist whose contributions have significantly shaped the field of computing.\n\n## Who is Peter Naur?\n\nPeter Naur (October 25, 1928 \u2013 January 3, 2016) was a Danish astronomer-turned-computer scientist. Initially, he made a name for himself in astronomy, but his transition to computing led to groundbreaking work that would influence the industry for decades.\n\n## Top Contributions to Computing\n\n### 1. **ALGOL 60**\n\nOne of Naur's most significant contributions was his work on the ALGOL 60 programming language. ALGOL (Algorithmic Language) was one of the first programming languages to introduce the concept of block structure and nested procedures, ideas that are now fundamental in modern programming languages.\n\nNaur was a key member of the International Federation for Information Processing (IFIP) Working Group 2.1, which was responsible for the development of ALGOL 60. His work on the Backus-Naur Form (BNF), a notation for describing the syntax of programming languages, has become a standard in the field.\n\n### 2. **Backus-Naur Form (BNF)**\n\nAlthough the notation was co-created with John Backus, Naur's role in refining and popularizing BNF cannot be overstated. BNF has become the standard method for describing the syntax of programming languages, making it easier to understand and implement new languages.\n\n### 3. **Perspectives on Computing**\n\nNaur was not just a technical contributor; he was also a thoughtful philosopher of computing. His book *\"Computing: A Human Activity\"* challenges the notion that computing is purely a technical discipline. He argued that computing is a human activity that requires understanding the social and psychological aspects of how people interact with technology.\n\n### 4. **Algorithm Optimization**\n\nNaur made significant contributions to the field of algorithm optimization. His work on efficient algorithms for various computational problems has had a lasting impact on how we approach problem-solving in computer science.\n\n### 5. **Astronomical Applications**\n\nEven after transitioning to computing, Naur continued to apply his astronomical knowledge to software development. He developed algorithms for astronomical calculations that were more efficient and accurate than existing methods.\n\n## Legacy\n\nPeter Naur's work has left an indelible mark on the field of computing. From his contributions to programming languages and algorithm optimization to his philosophical insights into the nature of computing, Naur's legacy continues to influence both practitioners and academics alike.\n\nAs we continue to build upon the foundations he helped lay, it's essential to remember the contributions of this Danish pioneer. Peter Naur may not be a household name, but his work has undoubtedly shaped the computing landscape we know today.",
+          "author": "Amazon Nova Pro",
+          "priority": 6
+        }
+      ]
+    }
+  ]
+}

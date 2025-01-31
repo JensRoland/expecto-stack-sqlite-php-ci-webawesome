@@ -1,0 +1,68 @@
+<?= $this->extend('Layouts/default') ?>
+
+<?= $this->section('pageTitle') ?>
+{{humanEntityNamePlural}} | SPCW App
+<?= $this->endSection() ?>
+
+<?= $this->section('header') ?>
+    <hgroup>
+        <h1>{{humanEntityNamePlural}}</h1>
+    </hgroup>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+<div class="table-controls wa-split">
+    <div class="table-controls-left">
+        <!-- TODO: add search and filtering -->
+    </div>
+    <div class="table-controls-right">
+        <wa-button href="<?= site_url('{{baseRoute}}/new') ?>" pill>
+            <wa-icon slot="prefix" name="plus"></wa-icon>
+            Create New
+        </wa-button>
+    </div>
+</div>
+
+<form method="post">
+<table>
+    <thead>
+        <tr>
+            {{tableHeaders}}
+            <th class="column-actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if (! empty($items)): ?> 
+        <?php foreach ($items as $item): ?> 
+        <tr>
+            {{tableRowCells}}
+            <td class="column-actions">
+                <wa-icon-button href="<?= site_url('{{baseRoute}}/show/' . rawurlencode($item->primaryKey())) ?>" name="magnifying-glass" variant="solid" label="Details"></wa-icon-button>
+                <wa-icon-button href="<?= site_url('{{baseRoute}}/edit/' . rawurlencode($item->primaryKey())) ?>" name="pen-to-square" variant="regular" label="Edit"></wa-icon-button>
+                <wa-icon-button name="trash-can" variant="regular" label="Delete" data-formaction="<?= site_url('{{baseRoute}}/delete/' . rawurlencode($item->primaryKey())) ?>" data-confirm="Are you sure you want to delete this?"></wa-icon-button>
+            </td>
+        </tr>
+        <?php endforeach; ?> 
+    <?php else: ?> 
+        <tr>
+            <td colspan="99" style="text-align: center;">No {{humanEntityNamePlural}} found.</td>
+        </tr>
+    <?php endif; ?> 
+    </tbody>
+</table>
+</form>
+
+<dialog id="dialog-confirm">
+	<header>
+		<h2>Confirm action</h2>
+		<button data-dialog="close" class="wa-plain">✖️</button>
+	</header>
+    <p class="dialog-message"></p>
+    <footer>
+        <button class="wa-outlined" data-dialog="close">Cancel</button>
+        <button class="wa-danger wa-filled" data-dialog="confirm">Confirm</button>
+    </footer>
+</dialog>
+
+<?= $this->endSection() ?>

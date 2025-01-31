@@ -1,0 +1,375 @@
+/*
+Yes we use global styles.
+The cascade is a feature and Tailwind is the ultimate antipattern.
+*/
+
+
+
+/*******************************************************************************
+  Theme
+*******************************************************************************/
+
+
+@font-face {
+  font-family: "Public Sans";
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+000-5FF; /* Font only includes Latin1 glyphs */
+  src:
+    local("Public Sans"),
+    url("/assets/fonts/PublicSansVariable.woff2") format("woff2 supports variations"),
+    url("/assets/fonts/PublicSansVariable.woff2") format("woff2-variations"),
+    url("/assets/fonts/PublicSansVariable.ttf") format("truetype");
+}
+
+:root {
+  --background-color: var(--wa-color-surface-default);
+  --border-color: var(--wa-color-neutral-border-normal);
+  --border-width: var(--wa-border-width-s);
+  --border-radius: var(--wa-border-radius-m);
+  --content-max-width: 860px;
+  --sidebar-width: 270px;
+  --sidebar-transition-speed: 250ms;
+  --content-padding: var(--wa-space-2xl);
+  --content-vertical-spacing: var(--wa-space-2xl);
+
+  --wa-font-weight-light: 200;
+  --wa-font-weight-normal: 400;
+  --wa-font-weight-semibold: 600;
+  --wa-font-weight-bold: 800;
+  --wa-font-family-body: "Public Sans", "ui-sans-serif", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --wa-font-family-heading: "Public Sans", "ui-sans-serif", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  /*
+  --wa-font-family-longform
+  --wa-font-family-code
+  */
+}
+
+
+body {
+  background-color: var(--wa-color-surface-default);
+}
+
+
+
+/*******************************************************************************
+  Typography
+*******************************************************************************/
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 685px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h1 + p {
+    margin-top: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap-style: balance;
+}
+
+
+
+/*******************************************************************************
+  Main layout: sidebar and content
+*******************************************************************************/
+
+main {
+  position: relative;
+  padding: 0 var(--content-padding);
+  margin-left: 0.5rem;
+  transition: var(--sidebar-transition-speed) margin-left ease-in-out;
+
+  /* If the first child is an <hgroup> element, add top margin to it */
+  > hgroup:first-child {
+    margin-top: var(--content-vertical-spacing);
+  }
+
+  > footer {
+    text-align: center;
+    color: var(--wa-color-text-quiet);
+    padding: var(--content-vertical-spacing) 0;
+  
+    > figure.logo {
+      margin: var(--content-vertical-spacing) 0 calc(var(--content-vertical-spacing)/2);
+      max-width: 100%;
+    }
+  
+    ul.footer-links {
+      list-style: none;
+      margin-bottom: var(--content-vertical-spacing);
+  
+      > li {
+        display: inline-block;
+  
+        > a {
+          color: var(--wa-color-text-quiet);
+          font-size: 1.1rem;
+          text-decoration: none;
+          padding: var(--wa-space-xs);
+  
+          &:hover {
+            color: var(--wa-color-text-normal);
+          }
+        }
+      }
+    }
+  }
+}
+.sidebar-open main {
+  margin-left: calc(var(--sidebar-width) + 0.5rem);
+}
+
+.content {
+  position: relative;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+#sidebar {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  width: var(--sidebar-width);
+  background-color: var(--wa-color-surface-raised);
+  color: var(--wa-color-neutral-on-quiet);
+  border-right: solid var(--border-width) var(--border-color);
+  border-radius: 0;
+  padding: var(--wa-space-m) var(--wa-space-xs) 0;
+  margin: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  transition: var(--sidebar-transition-speed) translate ease-in-out;
+  translate: -100%;
+
+  > [class*='wa-split'][class*='\:column'] {
+    flex-wrap: nowrap;
+  }
+}
+.sidebar-open #sidebar {
+  translate: 0;
+}
+
+#sidebar-toggle {
+  display: flex;
+  position: fixed;
+  z-index: 30;
+  top: var(--wa-space-2xs);
+  left: var(--wa-space-2xs);
+  height: auto;
+  width: auto;
+  color: var(--wa-color-text-normal);
+  border: none;
+  border-radius: 50%;
+  background: var(--wa-color-surface-default);
+  padding: var(--wa-space-xs);
+  margin: 0;
+  cursor: pointer;
+  transition: var(--sidebar-transition-speed) left ease-in-out;
+}
+.sidebar-open #sidebar-toggle {
+  left: calc(var(--sidebar-width) + var(--wa-space-2xs));
+}
+
+#sidebar-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+@media screen and (max-width: 900px) {
+  .sidebar-open main {
+    margin-left: var(--wa-space-xs);
+  }
+}
+
+
+
+/*******************************************************************************
+  Notifications
+*******************************************************************************/
+
+#notifications {
+  position: fixed;
+  z-index: 100;
+  width: 22em;
+  top: 0;
+  right: 0;
+  padding: var(--wa-space-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-space-xs);
+}
+#notifications > .wa-callout {
+  width: 100%;
+  max-height: 26em;
+  margin-bottom: 0;
+  padding: var(--wa-space-l) var(--wa-space-l);
+  overflow-y: hidden;
+  animation: msg-slide-out 0.7s ease-in-out forwards;
+
+  &.msg-show {
+    animation: msg-slide-in 0.5s ease-in-out forwards;
+  }
+
+  .msg-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 1.5em;
+    font-size: var(--wa-font-size-l);
+    padding: 0 var(--wa-space-xs);
+    cursor: pointer;
+  }
+}
+
+@keyframes msg-slide-in {
+  0% {
+    transform: translateX(calc(100% + var(--wa-space-xs)));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes msg-slide-out {
+  0% {
+    transform: translateX(0);
+  }
+  80% {
+    max-height: 26em;
+    padding: var(--wa-space-l) var(--wa-space-l);
+    transform: translateX(calc(100% + var(--wa-space-xs)));
+  }
+  99% {
+    display: block;
+    max-height: 0;
+    padding: 0 0;
+    transform: translateX(calc(100% + var(--wa-space-xs)));
+  }
+  100% {
+    display: none;
+    max-height: 0;
+    padding: 0 0;
+    transform: translateX(calc(100% + var(--wa-space-xs)));
+  }
+}
+
+
+
+/*******************************************************************************
+  Site navigation
+*******************************************************************************/
+
+#sidebar {
+  > nav {
+    flex-grow: 1;
+    max-width: 100%;
+
+    header {
+      margin-bottom: var(--wa-space-xl);
+    }
+
+    h2 {
+      color: var(--wa-color-text-quiet);
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+  }
+}
+
+#logotype {
+  display: block;
+  max-height: 3.2rem;
+  padding: var(--wa-space-3xs) var(--wa-space-xs);
+}
+
+.silhouette {
+  mix-blend-mode: multiply;
+}
+.wa-dark .silhouette {
+  mix-blend-mode: lighten;
+  filter: invert(1);
+}
+
+.iconlinks {
+  h2 {
+    padding: var(--wa-space-2xs) var(--wa-space-xs);
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: var(--wa-space-m);
+
+    > li {
+      margin-bottom: var(--wa-space-2xs);
+    }
+
+    a {
+      display: flex;
+      column-gap: var(--wa-space-xs);
+      align-items: center;
+      padding: var(--wa-space-2xs) var(--wa-space-xs);
+      color: var(--wa-color-text-normal);
+      text-decoration: none;
+
+      &:hover {
+        background-color: var(--wa-color-neutral-fill-normal);
+      }
+
+      > span {
+        position: relative;
+        top: 0.1em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+
+
+/*******************************************************************************
+  Entity index - list all
+*******************************************************************************/
+
+.table-controls {
+  margin-bottom: var(--wa-space-xs);
+
+  wa-button {
+    font-size: 0.9rem;
+  }
+
+  a {
+    color: var(--wa-color-text-quiet);
+
+    &:hover {
+      color: var(--wa-color-text-normal);
+    }
+  }
+}
+
+.column-actions {
+  width: 100px;
+  text-align: center;
+
+  > wa-icon-button::part(base) {
+    padding: var(--wa-space-2xs) var(--wa-space-3xs);
+  }
+}

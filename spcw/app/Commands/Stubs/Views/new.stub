@@ -1,0 +1,29 @@
+<?= $this->extend('Layouts/default') ?>
+
+<?= $this->section('pageTitle') ?>
+Create New {{humanEntityName}} | SPCW App
+<?= $this->endSection() ?>
+
+<?= $this->section('header') ?>
+    <hgroup>
+        <h1>Create New {{humanEntityName}}</h1>
+    </hgroup>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+
+<?php
+helper('form');
+?>
+
+<?= form_open('{{baseRoute}}/create') ?>
+
+{{formFields}}
+
+    <p>
+        <button type="submit">Create</button>
+    </p>
+
+<?= form_close() ?>
+
+<?= $this->endSection() ?>
